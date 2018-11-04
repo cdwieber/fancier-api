@@ -4,18 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVendorTypesTable extends Migration
+class CreateBudgetsTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * A discrete table for budgets allows scalability going forward with
+     * new vendor types.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('vendor_types', function (Blueprint $table) {
+        Schema::create('budgets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->integer('minimum');
+            $table->integer('maximum');
+            $table->integer('vendor_type_id');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateVendorTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendor_types');
+        Schema::dropIfExists('budgets');
     }
 }

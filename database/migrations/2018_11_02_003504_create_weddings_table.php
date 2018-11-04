@@ -15,6 +15,7 @@ class CreateWeddingsTable extends Migration
     {
         Schema::create('weddings', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('date');
             $table->timestamps();
         });
     }

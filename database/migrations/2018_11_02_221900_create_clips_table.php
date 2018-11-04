@@ -15,6 +15,8 @@ class CreateClipsTable extends Migration
     {
         Schema::create('clips', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('wedding_id');
+            $table->integer('vendor_id');
             $table->timestamps();
         });
     }

@@ -19,6 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_pic')->nullable();
+            $table->integer('wedding_id'); // FK of wedding.
+            $table->integer('partner_id')->nullable(); // Optional FK of partner.
+            $table->integer('vendor_id')->nullable(); // If the user is a vendor, the associated ID goes here.
             $table->rememberToken();
             $table->timestamps();
         });
