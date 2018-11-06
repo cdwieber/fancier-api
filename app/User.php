@@ -48,4 +48,19 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function vendor()
+    {
+        return $this->hasOne('App\User');
+    }
+
+    public function budgets()
+    {
+        return $this->hasManyThrough('App\Budget', 'App\Wedding');
+    }
+
+    public function wedding()
+    {
+        return $this->hasOne('App\Wedding');
+    }
 }

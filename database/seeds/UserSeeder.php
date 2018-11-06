@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker;
 
 class UserSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         // Create default admin.
         DB::table('users')->insert([
             'name' => 'admin',
@@ -22,9 +25,9 @@ class UserSeeder extends Seeder
         // Create dummy users.
         for ($i=0; $i<50; $i++) {
             DB::table('users')->insert([
-                'name' => str_random(10),
-                'email' => str_random(10) . '@gmail.com',
-                'password' => bcrypt('secret'),
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => bcrypt('password'),
             ]);
         }
     }

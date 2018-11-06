@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVendorsTable extends Migration
+class CreateVendorVendorTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateVendorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vendors', function (Blueprint $table) {
+        Schema::create('vendor_vendor_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('business_name');
-            $table->string('instagram');
-            $table->string('twitter');
-            $table->string('facebook');
-            $table->boolean('approved');
-            $table->json('tags');
+            $table->integer('vendor_id');
+            $table->integer('vendor_type_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateVendorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('vendor_vendor_type');
     }
 }
