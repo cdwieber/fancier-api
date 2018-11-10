@@ -15,7 +15,8 @@ class CreateWeddingsTable extends Migration
     {
         Schema::create('weddings', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
+            $table->date('date'); // Per sarah, this must be a firm date.
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }

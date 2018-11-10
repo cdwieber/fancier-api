@@ -29,6 +29,10 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'budgets' => 'array',
+    ];
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -51,16 +55,11 @@ class User extends Authenticatable implements JWTSubject
 
     public function vendor()
     {
-        return $this->hasOne('App\User');
-    }
-
-    public function budgets()
-    {
-        return $this->hasManyThrough('App\Budget', 'App\Wedding');
+        return $this->hasOne('App\Vendor');
     }
 
     public function wedding()
     {
-        return $this->hasOne('App\Wedding');
+        return $this->belongsTo('App\Wedding');
     }
 }

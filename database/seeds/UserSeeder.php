@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker;
+use App\User;
+use App\Wedding;
 
 class UserSeeder extends Seeder
 {
@@ -17,18 +18,23 @@ class UserSeeder extends Seeder
 
         // Create default admin.
         DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@fancierco.com',
-            'password' => bcrypt('admin'),
+            'name'       => 'admin',
+            'email'      => 'admin@fancierco.com',
+            'password'   => bcrypt('admin'),
         ]);
 
         // Create dummy users.
         for ($i=0; $i<50; $i++) {
-            DB::table('users')->insert([
+            $user_data = [
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('password'),
-            ]);
+            ];
+
+            $user = User::create($user_data);
+            $wedding = $user->wedding()->create(['date' => $faker->dateTimeBetween('now', '+2 years')]);
+            $user->wedding()->associate($wedding);
+            $user->save();
         }
     }
 }

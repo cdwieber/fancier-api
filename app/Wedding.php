@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wedding extends Model
 {
-    public function budgets()
+    public function users()
     {
-        return $this->hasMany('App\Budget');
+        return $this->hasMany('App\User');
     }
 }

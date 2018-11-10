@@ -20,11 +20,14 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_pic')->nullable();
-            $table->integer('wedding_id'); // FK of wedding.
+            $table->integer('wedding_id')->unsigned()->nullable(); // FK of wedding, if user is a couple.
             $table->integer('partner_id')->nullable(); // Optional FK of partner.
-            $table->integer('vendor_id')->nullable(); // If the user is a vendor, the associated ID goes here.
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('wedding_id')->references('id')->on('weddings');
         });
     }
 
