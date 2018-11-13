@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
 
     'middleware' => 'api',
-    'prefix' => 'auth'
+    'prefix'     => 'auth',
 
 ], function ($router) {
 
@@ -30,4 +30,15 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-});
+}
+);
+
+/* Vendor stub routes */
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    // Get vendors by type
+    Route::get('vendors/{type?}', 'VendorController@getJson');
+}
+);

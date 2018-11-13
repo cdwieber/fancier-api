@@ -20,6 +20,7 @@ class CreateVendorsTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
+            $table->text('about')->nullable();
             $table->string('city');
             $table->string('state');
             $table->integer('type_id');

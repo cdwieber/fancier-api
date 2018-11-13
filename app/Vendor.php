@@ -16,6 +16,11 @@ class Vendor extends Model
         'is_active' => 'boolean',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Reverse associate User model.
      *
@@ -29,10 +34,20 @@ class Vendor extends Model
     /**
      * Associate vendor type.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function types()
+    public function type()
     {
-        return $this->belongsToMany('App\VendorType');
+        return $this->hasOne('App\VendorType');
+    }
+
+    /**
+     * Associate images.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image');
     }
 }
